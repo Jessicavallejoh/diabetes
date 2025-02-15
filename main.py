@@ -104,4 +104,4 @@ def chatbot(query: str):
 @app.get ('/diabetes/by_gender/', tags=['Diabetes'])
 def get_diabetes_by_gener(gender: str):
     # Filtramos la lista de películas según la categoría ingresada
-    return [m for m in diabetes_list if gender.lower() in m['gender'].lower()]
+    return [m for m in diabetes_list if gender.lower() == m['gender'].lower()]
