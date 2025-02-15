@@ -6,9 +6,10 @@ La función get_diabetes(id) muestra el id de diabetes que se ha pedido.
 La función chatbot (query) es un asistente que responde a preguntas sobre diabetes.
 La función get_diabetes_by_category (cagory) ayuda a encontrar películas según su género (acción, comedia, etc.).
 """
-
+#LO HIZO JESSICA
 ### USAR ESTE COMANDO PARA CORRER EL CODIGO  uvicorn nombre_del_archivo:app --reload --port 9000 --log-level debug
-nltk.download('punkt_tab')
+
+
 # Importamos las herramientas necesarias para contruir nuestra API
 from fastapi import FastAPI, HTTPException # FastAPI nos ayuda a crear la API, HTTPException maneja errores.
 from fastapi.responses import HTMLResponse, JSONResponse # HTMLResponse para páginas web, JSONResponse para respuestas en formato JSON. 
@@ -23,11 +24,13 @@ from nltk.corpus import wordnet # Nos ayuda a encontrar sinonimos de palabras.
 #nltk.data.path.append('C:/Users/Usuario/AppData/Local/Programs/Python/Python312/Lib/site-packages/nltk') #Yenifer
 nltk.data.path.append('C:/Users/ASUS/AppData/Local/Programs/Python/Python312/Lib/site-packages/nltk') #Jessica
 
+
 # Descargamos las herramientas necesarias de NLTK para el análisis de palabras.
 
 nltk.download('punkt') # Paquete para dividir frases en palabras.
 
 nltk.download('punkt_tab') # Paquete para dividir frases en palabras.  
+
 nltk.download('wordnet') # Paquete para encontrar sinonimos de palabras en inglés.
 
 # Función para cargar las películas desde un archivo CSV
