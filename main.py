@@ -1,5 +1,3 @@
-
-
 """
 Imagina que esta API es una herramienta para la prediccion de diabetes:
 La función load_diabetes() cargar caracteristicas de diabetes desde un archivo CSV.
@@ -18,7 +16,8 @@ from nltk.corpus import wordnet # Nos ayuda a encontrar sinonimos de palabras.
 
 #import nltk
 #print(nltk.__file__)
-nltk.data.path.append('C:/Users/ASUS/AppData/Local/Programs/Python/Python312/Lib/site-packages/nltk')
+nltk.data.path.append('C:/Users/Usuario/AppData/Local/Programs/Python/Python312/Lib/site-packages/nltk') #Yenifer
+#nltk.data.path.append('C:/Users/ASUS/AppData/Local/Programs/Python/Python312/Lib/site-packages/nltk') #Jessica
 
 # Descargamos las herramientas necesarias de NLTK para el análisis de palabras.
 
@@ -29,10 +28,10 @@ nltk.download('wordnet') # Paquete para encontrar sinonimos de palabras en ingl�
 
 def load_diabetes():
     # Leemos el archivo que contiene información de diabetes y seleccionamps las columnas más importantes
-    df = pd.read_csv("Dataset/prediccion_diabetes.csv")[['ID', 'gender', 'age', 'hypertension', 'heart_disease', 'smoking_history', 'bmi', 'HbA1c_level', 'blood_glucose_level', 'diabetes']]
+    df = pd.read_csv("Dataset/prediccion_diabetes_copy.csv")[['ID', 'gender', 'age', 'hypertension', 'heart_disease', 'smoking_history', 'bmi', 'HbA1c_level', 'blood_glucose_level', 'diabetes']]
     
     # Renombramos las columnas para que sean más faciles de entender
-    df.columns = ['ID', 'gender', 'age', 'hypertension', 'heart_disease', 'smoking_history', 'bmi', 'HbA1c_level', 'blood_glucose_level', 'diabetes']
+    df.columns = ['id', 'gender', 'age', 'hypertension', 'heart_disease', 'smoking_history', 'bmi', 'HbA1c_level', 'blood_glucose_level', 'diabetes']
     
      # Llenamos los espacios vacíos con texto vacío y convertimos los datos en una lista de diccionarios 
     return df.fillna('').to_dict(orient='records')
@@ -60,16 +59,16 @@ def home():
 # Obteniendo la lista de caracteristicas de diabetes
 # Creamos una ruta para obtener todas las caracteristicas de diabetes disponibles
 
-# Ruta para obtener todas las películas disponibles
-@app.get('/diabetes', tags=['diabetes'])
+# Ruta para obtener todas las personas con diabetes disponible
+@app.get('/diabetes', tags=['Diabetes'])
 def get_diabetes():
     
     #si hay algun caso de diabetes, lo mostramos, sino mostramos un mensaje de error
     return diabetes_list or HTTPException(status_code=500, detail="No hay datos de diabetes")
 
 # Ruta para obtener una caracteristica específica según su ID
-@app.get('/diabetes/{id}', tags=['diabetes'])
-def get_diabetes(id: str):
+@app.get('/diabetes/{id}', tags=['Diabetes'])
+def get_diabetes(id: int):
     # Buscamos en la lista de diabetes la que tenga el mismo ID
     return next((m for m in diabetes_list if m['id'] == id), {"detalle": "Caso no encontrado"})
 
@@ -84,7 +83,7 @@ def chatbot(query: str):
     synonyms = {word for q in query_words for word in get_synonyms(q)} | set(query_words)
     
     # Filtramos la lista de películas buscando coincidencias en la categoría
-    results = [m for m in diabetes_list if any (s in m['category'].lower() for s in synonyms)]
+    results = [m for m in diabetes_list if any (s in m['smoking_history'].lower() for s in synonyms)]
     
     #si hay algun caso de diabetes, lo mostramos, sino mostramos un mensaje de error
     return JSONResponse (content={
@@ -92,9 +91,8 @@ def chatbot(query: str):
         "diabetes": results
     })
     
-    # Ruta para buscar datos de diabetes por categoría
-
-@app.get ('/diabetes/by_category/', tags=['diabetes'])
-def get_diabetes_by_category(category: str):
+# Ruta para buscar datos de diabetes por genero
+@app.get ('/diabetes/by_gender/', tags=['Diabetes'])
+def get_diabetes_by_gener(gender: str):
     # Filtramos la lista de películas según la categoría ingresada
-    return [m for m in diabetes_list if category.lower() in m['category'].lower()]
+    return [m for m in diabetes_list if gender.lower() in m['gender'].lower()]
