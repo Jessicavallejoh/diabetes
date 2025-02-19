@@ -11,12 +11,15 @@ La función get_diabetes_by_category (cagory) ayuda a encontrar películas segú
 
 
 # Importamos las herramientas necesarias para contruir nuestra API
+from typing import Optional
 from fastapi import FastAPI, HTTPException # FastAPI nos ayuda a crear la API, HTTPException maneja errores.
 from fastapi.responses import HTMLResponse, JSONResponse # HTMLResponse para páginas web, JSONResponse para respuestas en formato JSON. 
 import pandas as pd # Pandas nos ayuda a manejar datos en tablasm como si fuera un Excel.
 import nltk # NLTK es una librería para procesar texto y analizar palabras. 
 from nltk.tokenize import word_tokenize # Se usa para dividir un texto en palabras individuales.
-from nltk.corpus import wordnet # Nos ayuda a encontrar sinonimos de palabras. 
+from nltk.corpus import wordnet
+
+from prediction import predecir_diabetes # Nos ayuda a encontrar sinonimos de palabras. 
 
 #import nltk
 #print(nltk.__file__)
@@ -105,3 +108,9 @@ def chatbot(query: str):
 def get_diabetes_by_gener(gender: str):
     # Filtramos la lista de películas según la categoría ingresada
     return [m for m in diabetes_list if gender.lower() == m['gender'].lower()]
+
+@app.post('/predict_diabetes', tags=['Diabetes'])
+def predict_diabetes(gender: str, age: int, hypertension: int, heart_disease: int, smoking_history: str, peso: float, altura:  float, HbA1c_input: Optional[str]="", glucose_input: Optional[str]=""):
+    prediction = predecir_diabetes(gender, age, hypertension, heart_disease, smoking_history, peso, altura, HbA1c_input, glucose_input)
+    return prediction
+
