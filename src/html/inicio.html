@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Chatbot Diabetes - Inicio</title>
+
+     <!--Llamamos a los estilos:
+        1. llamamos al archivo que contiene los estilos de la seccion inicio-->
+        <link rel="stylesheet" href="../css/style_home.css">
+</head>
+<body id="body-inicio">
+
+    <!--Contenedor principal de sabias que-->
+    <div id="div-contenedor-sabias-que" class="container-fluid p-6 text-dark text-center" >
+
+        <h1 id="h1-titulo_inicio1"><b>¿Sabías que...?</b></h1>
+        <P id="parrafo1_inicio">La <b>diabetes</b> es una enfermedad crónica que ocurre cuando el cuerpo no produce suficiente insulina o no la utiliza de manera efectiva, lo que provoca niveles elevados de glucosa en la sangre.</P>
+
+        <!--Contenedor de cifras de la diabetes-->
+        <div id="div-cifras-diabetes" class="container text-center ">
+
+            <!--Contenedor de la tabla como si fuera una fila con las cifras-->
+            <div id="row-cifras-diabetes" class="row text-center bg-white aling">
+
+                <!--Contenedores div que actuan como las columnas de la tabla -->
+                <div class="col-sm-5 div-row-izq">
+                    <h1><b> 112Millones</b></h1>
+                    <p class="p-cifras">de adultos (de 18 años o más) viven con diabetes en la Región de la Américas (13% de la poblacion adulta)</p>
+                </div>
+                <div class="col-sm-5 div-row-der">
+                    <h1><b>43 Millones</b></h1>
+                    <p class="p-cifras">de personas con diabetes (de 30 años o más) en las Américas <b>no reciben tratamiento</b></p>
+                </div>
+            </div>
+            <!--Citacion de las cifras-->
+            <p id="cita_inicio" class="p-cifras"><em>Datos sacados de la Organización Panámericana de la Salud: https://www.paho.org/es/temas/diabetes</em></p>
+        </div>
+    </div>
+    
+    <!--Contenedor principal de los datos claves-->
+    <div id="datos_clave" class="container text-dark text-center">
+        <h1 id="titulo_inicio1"><b>Datos clave sobre la diabetes</b></h1>
+        <div id="div-contenido-datos-clave">
+            <div id="div-texto-datos-clave">
+                <p>💙 <b>Más del 50% de los casos de diabetes tipo 2 pueden prevenirse</b> con hábitos saludables como una alimentación equilibrada y actividad física regular.</p>
+                <p>🔬 <b>La diabetes no siempre presenta síntomas al inicio</b>, por lo que hacerse chequeos regulares es clave para un diagnóstico temprano.</p>
+                <p>🍏 <b>Mantener un peso saludable y reducir el consumo de azúcar</b> ayuda a controlar los niveles de glucosa en la sangre.</p>
+                <p>👩‍⚕️ <b>La educación en diabetes</b> mejora la calidad de vida y previene complicaciones.</p>
+            </div>
+            <!--Contenedor del video-->
+            <div>
+                <iframe width="560" height="315" 
+                    src="https://www.youtube.com/embed/kZLNnB7nTtI?si=sY2gjt_jaM3iAaP3" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                </iframe>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--contenedor del enlace al chatbot-->
+    <div>
+        <img>
+        <p>💬 <b>¿Tienes dudas sobre tu riesgo de diabetes?</b></p>
+        <p>Usa nuestro chatbot y descubre en minutos si podrías estar en riesgo. ¡Infórmate y toma el control de tu salud hoy mismo!</p>
+        <a href="javascript:cargarSeccion('chatbot')">Predice tu diabetes</a>
+    </div>
+    
+</body>
+</html>

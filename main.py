@@ -31,9 +31,7 @@ nltk.data.path.append('C:/Users/ASUS/AppData/Local/Programs/Python/Python312/Lib
 # Descargamos las herramientas necesarias de NLTK para el análisis de palabras.
 
 nltk.download('punkt') # Paquete para dividir frases en palabras.
-
 nltk.download('punkt_tab') # Paquete para dividir frases en palabras.  
-
 nltk.download('wordnet') # Paquete para encontrar sinonimos de palabras en inglés.
 
 # Función para cargar las películas desde un archivo CSV
@@ -60,7 +58,8 @@ def get_synonyms(word):
 # Creamos la aplicación FastAPI, que será el motor de nuestra API
 # Esto inicializa la API con un nombre y una versión
 app = FastAPI(title="Mi aplicación de predición de diabetes", version="1.0.0")
-    
+
+   
 # Ruta de inicio: Cuando alguien entra a la API sin especificar nada, verá un mensaje de bienvenida.
 
 @app.get('/', tags=['Home'])

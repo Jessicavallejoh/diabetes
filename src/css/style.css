@@ -1,0 +1,176 @@
+/*Estilos para la fuente personalizada: Monserrate*/
+@font-face {
+    font-family: 'Monserrat';
+    src: url('../fonts/Montserrat-VariableFont_wght.ttf') format('truetype'); /* Ajusta la ruta según tu estructura */
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*-----------------------------------------------------------------------BODY--------------------------------------------------------*/
+/* Hace que el contenido llene toda la pantalla */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Altura mínima del viewport */
+    font-family: 'Monserrat', Arial, sans-serif;
+    justify-content: space-between;
+    align-content: stretch;/*Alinea los elementos verticalmente al centro*/
+}
+
+/*----------------------------------------------------------------------HEADER-------------------------------------------------------*/
+/*Estilos para la navegación*/
+nav{
+    display: flex;
+    justify-content: flex-end; /*Alinea los elementos a la derecha*/
+    align-items: center; /*Alinea los elementos verticalmente al centro*/
+    padding: 15px; /*Espaciado interno*/
+    border: 0.5px solid rgb(216, 174, 159);
+    border-radius: 0px
+}
+
+/*Estilos para los enlaces*/
+#navbar-enlaces{
+    display: flex;
+    align-items:baseline;
+    justify-content: flex-end;
+    flex-basis: none; 
+    flex-grow: 0 !important; 
+}
+
+/*Estilos para el logo*/
+#img-logo{
+    width:70px; /*Ancho de la imagen*/
+    height:70px; /*Altura de la imagen*/
+}
+
+/*Estilos para el menu de navegación*/
+ul{
+    font-size: 17px;
+    color: orangered;
+    list-style: none; /*Quita las viñetas*/
+    padding: 0;
+    margin: 0;
+    display: flex; /* Activa el modelo de caja flexible */
+    gap: 15px; /* Espaciado entre los elementos */
+    height: auto;
+}
+
+/*Estilos para los elementos de la navegación*/
+li{
+    font-size: 15px;
+    width: 130px;
+    flex: 1; /* Distribuye el espacio disponible entre los elementos */
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    font-weight: bold;
+
+}
+
+#li-equipo{
+    width: 150px;
+}
+#li-chatbot{
+    border: 0.5px solid orangered;
+    border-radius: 5px;
+}
+
+/*Estilos para el logo del header*/
+.a-logo{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 36px;
+    margin:0px;
+}
+
+.nav-link{
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding:5%;
+}
+
+/*------------------------------------------------------------FOOTER----------------------------------------------------*/
+
+/* Contenedor principal */
+.contenido {
+    flex: 1; /* Hace que el contenido crezca y empuje el footer hacia abajo */
+}
+
+/* Estilos del footer */
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 50px;
+    background-color: rgb(255, 255, 255);
+    border-top: 0.5px solid rgb(216, 174, 159);
+    height: 60px;
+    border-radius: 0px;
+}
+
+/* Estilos para el contenedor principal del footer */
+#div-contenedor-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/*Estilos para la imagen del logo del footer*/
+#img-logo-footer{
+    width: 40px; /*Ancho de la imagen*/
+    height:40px; /*Altura de la imagen*/
+}
+
+/*Estilos para el logo del footer*/
+#a-logo-footer{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 25px;
+    margin:0px;
+}
+
+/*Estilos para el copyright del footer*/
+#p-copyright{
+    text-align:start;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 10px;
+    margin:0px;
+}
+
+/* Menú de navegación */
+#navbar-enlaces-footer{
+    display: flex;
+    gap: 30px;
+    font-weight: bold;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Enlaces de navegación */
+.a-link-footer{
+    font-size: 10px;
+    height: 0px;
+    border: none;
+    width: 30px;
+}
+/*Estilos para el enlace del equipo*/
+#a-equipo-footer{
+    width: 160px;
+}
+
+/*Estilos para el logo de talento tech*/
+#img-logo-tech-footer{
+    width: 200px; /*Ancho de la imagen*/
+    height:50px; /*Altura de la imagen*/
+}

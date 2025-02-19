@@ -1,0 +1,95 @@
+/*Estilos para la fuente personalizada: Monserrate*/
+@font-face {
+    font-family: 'Monserrat';
+    src: url('../fonts/Montserrat-VariableFont_wght.ttf') format('truetype'); /* Ajusta la ruta según tu estructura */
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*-----------------------------------------------------------------------BODY--------------------------------------------------------*/
+/*modifica el tipo de letra del body en home*/
+#body-inicio{
+    font-family: 'Monserrat'Arial, sans-serif;
+}
+/*---------------------------------------------------------contenedor sabias que-----------------------------------------------------*/
+/*Estilos para el contenedor principal de sabias que*/
+#div-contenedor-sabias-que{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh; /* Altura mínima del viewport */
+    justify-content: center;
+    background-color: rgba(224, 224, 224, 100);
+    
+}
+/*Estilo para el titulo de sabias que*/
+#h1-titulo_inicio1{
+    font-size: 40px;
+    margin: 5px;
+}
+
+/*Estilo para el parrafo de sabias que*/
+#parrafo1_inicio{
+    font-size: 25px;
+    margin:20px;
+}
+
+/*Estilo el contenedor de las cifras*/
+#div-cifras-diabetes{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+/*estilo paara las cifras*/
+#row-cifras-diabetes{
+    text-align: center;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    width: 70%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/*Estilo para los parrafos de cifras*/
+.p-cifras{
+    font-size: 16px;
+}
+
+/*Estilo para la cita de sabias que*/
+.div-row-der{
+    border-left: 4px solid #ff5733; /* Borde izquierdo de 4px en color naranja */
+    padding-left: 10px; /* Espacio para separar el texto del borde */
+}
+
+/*---------------------------------------------------------contenedor datos clave-----------------------------------------------------*/
+/*Estilos para el contenedor principal de datos clave*/
+#datos_clave{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 80vh; /* Altura mínima del viewport */
+}
+
+/*Estilo para el titulo de datos clave*/
+#titulo_inicio1{
+    font-size: 40px;
+    margin: 5px;
+}
+/*Estilo para el parrafo de datos clave*/
+#div-contenido-datos-clave{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction:row;
+}
+
+#div-texto-datos-clave{
+    margin: 2px;
+    padding: 2px;
+    text-align: justify;
+}
