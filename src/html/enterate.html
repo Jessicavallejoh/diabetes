@@ -4,37 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-    <title>Chatbot Diabetes - Enterate</title>
-
+    <title>Chatbot Diabetes - Enterate</title>  
+    
      <!--Llamamos a los estilos:
         1. llamamos al archivo que contiene los estilos de la seccion enterate-->
-        
+    <link rel="stylesheet" href="../css/style_enterate.css">
+      
 </head>
 <body id="body-enterate">
-        <div>
-            <h1>Entérate</h1>
-            <p>Encontrarás una selección de enlaces a páginas de organizaciones reconocidas y recursos confiables sobre la diabetes, así como recetas saludables para ayudarte a mantener un estilo de vida equilibrado. Explora información útil y verificada para cuidar tu salud y bienestar. 🍏</p>
-            <div>
-                <div>
-                    <img>
-                    <h1>Recetas saludables para diabeticos</h1>
-                    <p>Descubre recetas saludables y económicas en Diabetes Food Hub. 🍽️💙 En este enlace encontrarás platillos deliciosos y accesibles, diseñados para ayudar a mantener un equilibrio nutricional sin gastar de más. ¡Cuida tu salud con opciones sabrosas y amigables con tu bolsillo!</p>
-                    <a href="https://diabetesfoodhub.com/" target="_blank">Más informacion</a>
+    <!--Contenedor de la seccion de enterate-->
+    <div id="div-enterate">
+        <h1 id="h1-titulo_enterate">Entérate</h1>
+        <p id="p-enterate">Encontrarás una selección de enlaces a páginas de organizaciones reconocidas y recursos confiables sobre la diabetes, así como recetas saludables para ayudarte a mantener un estilo de vida equilibrado. Explora información útil y verificada para cuidar tu salud y bienestar. 🍏</p>
+   
+        <!--Contenedor de las tarjetas-->
+        <div id="div-tarjetas-enterate" class="row row-cols-1 row-cols-md-4 g-4">
+
+            <!--Tarjeta 1-->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../img/diabetesfoodhub.webp" class="card-img-top" alt="diabetesfoodhub">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Recetas saludables para diabeticos</b></h5>
+                        <p class="card-text">Descubre recetas saludables y económicas en <b>Diabetes Food Hub</b>. En este enlace encontrarás platillos deliciosos y accesibles, diseñados para ayudar a mantener un equilibrio nutricional sin gastar de más. ¡Cuida tu salud con opciones sabrosas y amigables con tu bolsillo!</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://diabetesfoodhub.com/" target="_blank">Más información >></a>
+                    </div>
                 </div>
-                <div>
-                    <img>
-                    <h1>Organización Panamericana de la Salud</h1>
-                    <p>Accede a información clave sobre la diabetes con la Organización Panamericana de la Salud (OPS). Descubre datos actualizados, estrategias de prevención y recursos para mejorar el control de la enfermedad. </p>
-                    <a href="https://www.paho.org/es/temas/diabetes" target="_blank">Más informacion</a>
+            </div>
+            
+            <!--Tarjeta 2-->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../img/OPS-1-1.jpg" class="card-img-top" alt="OPS">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Organización Panamericana de la Salud</b></h5>
+                        <p class="card-text">Accede a información clave sobre la diabetes con la <b>Organización Panamericana de la Salud (OPS)</b>. Descubre datos actualizados, estrategias de prevención y recursos para mejorar el control de la enfermedad.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://www.paho.org/es/temas/diabetes" target="_blank">Más información >></a>
+                    </div>
                 </div>
-                <div>
-                    <img>
-                    <h1>Asociación Americana de Diabetes</h1>
-                    <p>Consulta los Estándares de Atención en Diabetes de la American Diabetes Association (ADA). Encuentra guías actualizadas basadas en evidencia para el diagnóstico, tratamiento y manejo de la diabetes</p>
-                    <a href="https://professional.diabetes.org/standards-of-care" target="_blank">Más informacion</a>
+            </div>
+
+            <!--Tarjeta 3-->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../img/logo-ADA.png" class="card-img-top" alt="ADA">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Asociación Americana de Diabetes</b></h5>
+                        <p class="card-text">Consulta los Estándares de Atención en Diabetes de la <b>American Diabetes Association (ADA)</b>. Encuentra guías actualizadas basadas en evidencia para el diagnóstico, tratamiento y manejo de la diabetes.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://professional.diabetes.org/standards-of-care" target="_blank">Más información >></a>
+                    </div>
+                </div>
+            </div>
+
+            <!--Tarjeta 4-->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="../img/logo-WHO.svg" class="card-img-top" alt="WHO's">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Organización Mundial de la Salud</b></h5>
+                        <p class="card-text">Accede a información sobre la diabetes con la <b>Organización Mundial de la Salud (OMS)</b>. Descubre datos actualizados, estrategias de prevención y recursos para mejorar el control de la enfermedad.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="https://www.who.int/initiatives/the-who-global-diabetes-compact" target="_blank">Más información >></a>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 </body>
 </html>
