@@ -70,8 +70,9 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     min-height: 80vh; /* Altura mínima del viewport */
+    padding-top: 20px;
 }
 
 /*Estilo para el titulo de datos clave*/
@@ -79,17 +80,58 @@
     font-size: 40px;
     margin: 5px;
 }
-/*Estilo para el parrafo de datos clave*/
+/*Estilo el contenedor de los parrafo de datos clave*/
 #div-contenido-datos-clave{
     text-align: center;
     align-items: center;
     justify-content: center;
     display: flex;
     flex-direction:row;
+    margin: 5px;
 }
-
+/*estilo para el parrafo de datos clave*/
 #div-texto-datos-clave{
     margin: 2px;
-    padding: 2px;
-    text-align: justify;
+    padding: 20px;
+    text-align: left;
+}
+
+/*---------------------------------------------------------contenedor enlace chatbot-----------------------------------------------------*/
+/*Estilos para el contenedor principal del enlace al chatbot*/
+#div-enlace-chat{
+    align-items: center;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    min-height: 20vh; /* Altura mínima del viewport */
+    padding-top: 20px;
+    background-color: rgba(224, 224, 224, 100);
+}
+
+/*Estilo para la imagen del div*/
+#img-inicio{
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}
+
+/*Estilo para el contenedor del enlace del chatbot*/
+#div-texto-chat{
+    margin: 2px;
+    padding: 20px;
+    text-align: left;
+    width: 50%;
+    align-items:center ;
+    font-size: 20px;
+    margin:20px;
+} 
+#a-enlace-chat{  
+    color: white;
+    text-decoration: none;
+    border: 1px solid orangered;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: orangered;
+    text-align: center;
+    font-size: 15px;
 }
