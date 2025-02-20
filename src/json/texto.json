@@ -1,4 +1,12 @@
 {   
-    "saludo_bienvenida":"",
-    "invitacion_chat":""
+    "saludo_bienvenida":"🔮 ¡Bienvenido a Predice!",
+    "Invitacion_encuesta":"Tu salud es lo más importante, y Predice está aquí para ayudarte a estimar tu riesgo de desarrollar diabetes en solo unos minutos.",
+    "funcionamiento":"💡 ¿Cómo funciona?",
+    "funcionamiento_item": [
+        "      🔹 Responde algunas preguntas sobre tu salud y estilo de vida.",
+        "      🔹 Obtén un porcentaje de riesgo basado en tu información.",
+        "      🔹 Recibe recomendaciones personalizadas para prevenir o manejar la diabetes."],
+            
+    "invitación_2":"📊 Toma el control de tu bienestar. ¡Comienza ahora y descubre qué medidas puedes tomar para cuidar tu salud! 💙",
+    "invitacion_chat":"Antes de comenzar, dime ¿cuál es tu nombre? 😊"
 }
