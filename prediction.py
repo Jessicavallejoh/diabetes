@@ -46,7 +46,7 @@ def predecir_diabetes(gender, age, hypertension, heart_disease, smoking, peso, a
     # Codificar valores categóricos
     gender = 1 if gender == "female" else 0
     smoking_dict = {"never": 0, "former": 1, "current": 2}
-    smoking = smoking_dict.get(smoking, 0)
+    smoking = smoking_dict.get(smoking, 0) #si no esta ninguno de los anteriores entonces dejar cero
 
     # Crear diccionario de entrada
     datos_usuario = {

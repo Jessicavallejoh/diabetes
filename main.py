@@ -108,6 +108,47 @@ def get_diabetes_by_gener(gender: str):
     # Filtramos la lista de películas según la categoría ingresada
     return [m for m in diabetes_list if gender.lower() == m['gender'].lower()]
 
+
+@app.get ('/diabetes/by_age/', tags=['Diabetes'])
+def get_diabetes_by_age(age: int):
+    # Filtramos la lista de diabetes según la categoría de edad
+    return [m for m in diabetes_list if age == m['age']]
+
+@app.get ('/diabetes/by_hypertension/', tags=['Diabetes'])
+def get_diabetes_by_hypertension(hypertension: int):
+    # Filtramos la lista de diabetes según la categoría hypertension
+    return [m for m in diabetes_list if hypertension == m['hypertension']]
+
+@app.get ('/diabetes/by_heart_disease/', tags=['Diabetes'])
+def get_diabetes_by_heart_disease(heart_disease: int):
+    # Filtramos la lista de diabetes según la categoría hypertension
+    return [m for m in diabetes_list if heart_disease == m['heart_disease']]
+
+@app.get ('/diabetes/by_smoking_history/', tags=['Diabetes'])
+def get_diabetes_by_smoking_history(smoking_history: str):
+    # Filtramos la lista de diabetes según la categoría genero
+    return [m for m in diabetes_list if smoking_history.lower() == m['smoking_history'].lower()]
+
+@app.get ('/diabetes/by_bmi/', tags=['Diabetes'])
+def get_diabetes_by_bmi(bmi: float):
+    # Filtramos la lista de diabetes según la categoría de edad
+    return [m for m in diabetes_list if bmi == m['bmi']]
+
+@app.get ('/diabetes/by_HbA1c_level/', tags=['Diabetes'])
+def get_diabetes_by_HbA1c_level(HbA1c_level: float):
+    # Filtramos la lista de diabetes según la categoría de edad
+    return [m for m in diabetes_list if HbA1c_level == m['HbA1c_level']]
+
+@app.get ('/diabetes/by_blood_glucose_level/', tags=['Diabetes'])
+def get_diabetes_by_blood_glucose_level(blood_glucose_level: float):
+    # Filtramos la lista de diabetes según la categoría de edad
+    return [m for m in diabetes_list if blood_glucose_level == m['blood_glucose_level']]
+
+@app.get ('/diabetes/by_diabetes/', tags=['Diabetes'])
+def get_diabetes_by_heart_diabetes(diabetes: int):
+    # Filtramos la lista de diabetes según la categoría hypertension
+    return [m for m in diabetes_list if diabetes == m['diabetes']]
+
 @app.post('/predict_diabetes', tags=['Diabetes'])
 def predict_diabetes(gender: str, age: int, hypertension: int, heart_disease: int, smoking_history: str, peso: float, altura:  float, HbA1c_input: Optional[str]="", glucose_input: Optional[str]=""):
     prediction = predecir_diabetes(gender, age, hypertension, heart_disease, smoking_history, peso, altura, HbA1c_input, glucose_input)
