@@ -3,7 +3,9 @@ import numpy as np  # Importar numpy para operaciones numéricas
 from sklearn.model_selection import train_test_split  # Importar para dividir datos
 from sklearn.ensemble import RandomForestClassifier  # Importar clasificador Random Forest
 from sklearn.preprocessing import LabelEncoder  # Importar para codificar etiquetas
-from sklearn.metrics import accuracy_score  # Importar para calcular precisión
+from sklearn.metrics import accuracy_score
+
+from ollama import process_report  # Importar para calcular precisión
 
 # Cargar dataset
 df = pd.read_csv("./Dataset/prediccion_diabetes.csv")  # Leer archivo CSV
@@ -30,19 +32,8 @@ print(f"Precisión del modelo: {accuracy_score(y_test, y_pred):.2f}")  # Imprimi
 # Función para pedir datos al usuario y predecir
 def predecir_diabetes(gender, age, hypertension, heart_disease, smoking, peso, altura, hba1c_input, glucose_input):
     # Pedir datos al usuario
-    '''gender = input("Género (Male/Female): ").strip().lower()  # Pedir género
-    age = int(input("Edad: "))  # Pedir edad
-    hypertension = int(input("¿Sufres de Hipertensión? (1=Sí, 0=No): "))  # Pedir hipertensión
-    heart_disease = int(input("Sufres de alguna enfermedad cardiaca? (1=Sí, 0=No): "))  # Pedir enfermedad cardiaca
-    smoking = input("Historial de fumar (never/former/current): ").strip().lower()  # Pedir historial de fumar
-    peso = float(input("Ingresa tu peso en Kilogramos: "))  # Pedir BMI
-    altura = float(input("Ingresa tu altura en Metros (ejemplo: 1.75): "))  # Pedir BMI'''
     bmi = peso / (altura ** 2)  # Calcular BMI
-
-    # Permitir que el usuario omita HbA1c y Glucosa
-    '''hba1c_input = input("Nivel de HbA1c (dejar en blanco si no sabe): ").strip()
-    glucose_input = input("Nivel de glucosa en sangre (dejar en blanco si no sabe): ").strip()'''
-
+    
     # Codificar valores categóricos
     gender = 1 if gender == "female" else 0
     smoking_dict = {"never": 0, "former": 1, "current": 2}
@@ -75,6 +66,8 @@ def predecir_diabetes(gender, age, hypertension, heart_disease, smoking, peso, a
     # Hacer predicción con probabilidad
     probabilidad = model.predict_proba(df_usuario)[0][1]  # Probabilidad de tener diabetes
     
+    report= process_report(gender, age, hypertension, heart_disease, smoking, peso, altura, bmi, hba1c_input, glucose_input)
+    
     print(f"Probabilidad estimada: {probabilidad * 100:.2f}%")
     
     if probabilidad > 0.5:
@@ -82,10 +75,8 @@ def predecir_diabetes(gender, age, hypertension, heart_disease, smoking, peso, a
     else:
         print("No tienes un alto riesgo de tener diabetes.")
         
-    return probabilidad
+    puntaje = f"Probabilidad estimada: {probabilidad * 100}%" 
+        
+    return puntaje, report 
 
 
-
-
-# Ejecutar la función
-#predecir_diabetes()
