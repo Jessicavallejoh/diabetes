@@ -4,18 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <title>Chatbot Diabetes - Chatbot</title>
 
      <!--Llamamos a los estilos:
         1. llamamos al archivo que contiene los estilos de la seccion Chatbot-->
-        
+        <link rel="stylesheet" href="../css/style_chatbot.css">
+    <!--<script src="../js/script_cargar_seccion.js" defer></script>-->
+    <!--<script src="../js/conexion_chatbot.js"></script>-->
+    
 </head>
-<body id="body-chatbot">
-    <div>
-        <img>
-        <p>hola</p>
-        <!--aqui se comenzara a insertar los mensajes del chatbot-->
+<body id="body-chatbot" >
+
+
+    <!--contenedor principal de la seccion chatbot-->
+    <div id="contenedor-chatbot" >
+
+        <!--mensajes del chatbot-->
+        <div id="div-chatbot" class="overflow-y-auto">
+            
+            <!--mensajes del chat-->
+            <div id="chat-box"></div>
+            
+
+        </div>
+        <!-- Contenedor para el input único y el botón de enviar -->
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Escribe tu respuesta...">
+            <button onclick="guardarRespuesta()">Enviar</button>
+        </div>
+
+        <!--Codigo principal del formulario-->
+        <script src="../js/formulario_chatbot.js"></script>
     </div>
 </body>
 </html>

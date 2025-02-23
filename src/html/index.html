@@ -20,9 +20,13 @@
     
     <!--Llamamos a los scripts: 
         1. llama a la seccion que se quiera mostrar
-        2. vinculamos el JS de popper
-        3. vinculamos el JS de Bootstrap-->
+        2. vinculamos el JS de conexion con el chatbot
+        3. vinculamos el JS de popper
+        4. vinculamos el JS de Bootstrap-->
     <script src="../js/script_cargar_seccion.js" defer></script>
+    <script src="../js/conexion_chatbot.js"></script>
+    <script src="../js/formulario_chatbot.js"></script>
+    <!--<script src="../js/formulario_chatbot.js"></script>-->
      <!-- Incluir Popper.js y Bootstrap JS -->
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
@@ -53,7 +57,7 @@
                             </b><a class="nav-link" href="javascript:cargarSeccion('inicio')">Inicio</a>
                         </li>
                         <li class="nav-item" id="li-chatbot">
-                            <a class="nav-link" href="javascript:cargarSeccion('chatbot')">Chatbot</a>
+                            <a class="nav-link" href="javascript:cargarSeccion('chatbot')" id="btn-chatbot">Chatbot</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:cargarSeccion('enterate')">Entérate</a>
@@ -93,7 +97,7 @@
                 <!--contienen los enlaces de navegación-->
                 <nav id="navbar-enlaces-footer" class="navar-nav list-unstyled ">
                     <a class="nav-link a-link-footer" href="javascript:cargarSeccion('inicio')">Inicio</a>
-                    <a class="nav-link a-link-footer" href="javascript:cargarSeccion('chatbot')">Chatbot</a>
+                    <a class="nav-link a-link-footer" href="javascript:cargarSeccion('chatbot')" id="btn-chatbot">Chatbot</a>
                     <a class="nav-link a-link-footer" href="javascript:cargarSeccion('enterate')">Entérate</a>
                     <a id="a-equipo-footer" class="nav-link a-link-footer" href="javascript:cargarSeccion('nuestro_equipo')">Nuestro equipo</a>
                     <a class="nav-link a-link-footer" href="javascript:cargarSeccion('contactanos')">Contáctanos</a>

@@ -18,7 +18,12 @@ function cargarSeccion(seccion) {
         // Si la solicitud es exitosa (código de estado 200)
         if (xhr.status === 200) {  
             // Insertar el contenido en el div con id "contenido"
-            document.getElementById('contenido').innerHTML = xhr.responseText;  
+            document.getElementById('contenido').innerHTML = xhr.responseText;
+
+            // Si se carga la sección "chatbot", ejecutamos el mensaje de bienvenida
+            if (seccion === "chatbot") {
+                setTimeout(mostrarMensajeBienvenida, 500); // Pequeño retraso para asegurar que se cargó el contenido
+            }
         } else {
             // En caso de error
             document.getElementById('contenido').innerHTML = 'Error al cargar la sección';  
@@ -33,10 +38,13 @@ function cargarSeccion(seccion) {
 
     // Enviar la solicitud
     xhr.send();
-}
 
+
+}
 
 // Cargar "inicio.html" automáticamente cuando la página index carga
 document.addEventListener("DOMContentLoaded", () => {
     cargarSeccion("inicio");
 });
+
+
