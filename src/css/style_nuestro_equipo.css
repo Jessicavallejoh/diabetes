@@ -1,0 +1,127 @@
+/*Estilos para la fuente personalizada: Monserrate*/
+@font-face {
+    font-family: 'Monserrat';
+    src: url('../fonts/Montserrat-VariableFont_wght.ttf') format('truetype'); /* Ajusta la ruta según tu estructura */
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*-----------------------------------------------------------------------BODY--------------------------------------------------------*/
+/* Hace que el contenido llene toda la pantalla */
+body {
+    font-family: 'Monserrat', Arial, sans-serif;
+}
+
+/*Contenedor principal de nuestro equipo*/
+#div-nuestro-equipo{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 10vh; /* Altura mínima del viewport */
+    justify-content: center;
+    padding: 50px;
+}
+
+/*Contenedor principal de todas las tarjetas*/
+#div-foto-nuestro-equipo{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    min-height: 10vh; /* Altura mínima del viewport */
+    justify-content: space-evenly;
+    padding: 50px;
+    /*background-color: green;*/
+}
+
+/*Contenedor principal de las tarjetas del equipo*/
+#div-tarjetas-equipo{
+    align-items: center;
+    align-content: baseline;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    width: 40%;
+    background-color: rgba(255, 68, 0, 0.336);
+    padding: 20px;
+    height: 400px;
+    border-radius: 10px;
+}
+
+/*Contenedor principal de las tarjetas del docente*/
+#div-tarjetas-docente{
+    align-items: center;
+    align-content: baseline;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    width: 40%;
+    background-color: rgba(165, 42, 42, 0.336);
+    padding: 20px;
+    height: 400px;
+    color: black;
+    border-radius: 10px;
+}
+/*Contenedor de el contenido de las tarjetas*/
+#div-contenido-tarjetas{
+    /*align-items: flex-start;*/
+    align-content: baseline;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+}
+
+/*Estilos para el titulo principal de la seccion*/
+#h1-nuestro-equipo{
+    font-size: 60px;
+    margin: 5px;
+}
+
+/*Estilos para el parrafo principal de la seccion*/
+#p-nuestro-equipo{
+    font-size: 18px;
+    margin:20px;
+}
+/*Estilos para los titulos h2*/
+h2{
+    text-align: center;
+    font-size: 30px;
+    width: 350px;
+}
+
+/*Estilos para los titulos h5*/
+h5{
+    text-align: center;
+    font-size: 20px;
+
+}
+
+/*Estilos para las imagenes*/
+img{
+    height: 150px;
+    padding: 2px;
+}
+
+/*Estilos para los parrafos*/
+p{
+    /*text-align: justify;*/
+    font-size: 15px;
+}
+
+/*estilos para los enlaces*/
+a{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    width: bold;
+    font-size: 16px;
+}
+/*Estilos para las tarjetas*/
+.card{
+    height: 300px;
+    width: 200px;
+}

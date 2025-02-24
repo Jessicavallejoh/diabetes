@@ -9,18 +9,59 @@
 
      <!--Llamamos a los estilos:
         1. llamamos al archivo que contiene los estilos de la seccion contactanos-->
-        
+        <link rel="stylesheet" href="../css/style_contactanos.css">
 </head>
 <body id="body-contactanos">
-        <div>
-            <h1>Contactanos</h1>
-            <img>
-            <h3>Company name</h3>
-            <p>company@company.com</p>
-            <p>+1800-000-000</p>
+
+    <!--Contenedor de la seccion de contactanos-->
+    <div id="contenedor-contactanos">
+
+        <!--Contenedor de la seccion de la informacion de contactanos-->
+        <div id="div-contenedor-contactanos">
+
+            <h2>Contactanos</h2>
+
+            <!--informacion de la empresa-->
+            <div id="div-secundario-contactanos">
+                <img id="img-logo-contactanos" src="../img/logo.png" alt="logo contactanos">
+                <div id="div-informacion-contactanos">
+                    <h5>Equipo # 13</h5>
+                    <p>equipo13@equipo13.com<br>+1800-000-000<br><br>Horario: Lunes a Viernes de 9:00 a 18:00<br>Colombia, Antioquia.</p>
+                </div>
+            </div>
         </div>
-        <div>
-            <h1>Envianos un email</h1>
+
+        <!--Contenedor del formulario-->
+        <div id="div-contenedor-formulario">
+
+            <h2>Envianos un email</h2>
+
+            <!--Formulario de contacto-->
+            <div class="row g-2">
+                <div class="col-md">
+                    
+                    <!--Contenedor de la casilla nombre-->
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="floatingInputGrid" placeholder="name" value="">
+                        <label for="floatingInputGrid">Nombre</label>
+                    </div>
+
+                    <!--Contenedor de la casilla email-->
+                    <div class="form-floating">
+                        <input type="email" class="form-control" id="floatingInputGrid" placeholder="email" value="">
+                        <label for="floatingInputGrid">Correo electrónico</label>
+                    </div>
+
+                    <div class="form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 150px"></textarea>
+                        <label for="floatingTextarea2">Mensaje:</label>
+                    </div>
+
+                    <!--Boton de envio-->
+                    <button id="btn-enviar-contactanos" type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
         </div>
+    </div>
 </body>
 </html>
