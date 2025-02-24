@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function enviarDatosAlServidor() {
     console.log("Respuestas finales:", respuestas);
     // Enviar los datos al servidor
-    fetch("http://127.0.0.1:5000/formulario", {
+    fetch("http://127.0.0.1:9000/formulario", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ respuestas: respuestas })

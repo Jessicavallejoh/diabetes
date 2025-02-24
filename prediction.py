@@ -33,7 +33,7 @@ print(f"Precisión del modelo: {accuracy_score(y_test, y_pred):.2f}")  # Imprimi
 def predecir_diabetes(gender, age, hypertension, heart_disease, smoking, peso, altura, hba1c_input, glucose_input):
     # Pedir datos al usuario
     bmi = peso / (altura ** 2)  # Calcular BMI
-    
+    print("BMI:", type(peso), type(altura), bmi, type(hba1c_input), hba1c_input)  # Debugging
     # Codificar valores categóricos
     gender = 1 if gender == "female" else 0
     smoking_dict = {"never": 0, "former": 1, "current": 2}
@@ -75,8 +75,10 @@ def predecir_diabetes(gender, age, hypertension, heart_disease, smoking, peso, a
     else:
         print("No tienes un alto riesgo de tener diabetes.")
         
-    puntaje = f"Probabilidad estimada: {probabilidad * 100}%" 
+    puntaje = f"Probabilidad estimada: {probabilidad * 100}% \n{report}" 
         
-    return puntaje, report 
+   # return puntaje, report 
+   
+    return puntaje 
 
 
