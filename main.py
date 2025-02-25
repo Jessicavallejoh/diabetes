@@ -12,15 +12,24 @@ La función get_diabetes_by_category (cagory) ayuda a encontrar películas segú
 
 # Importamos las herramientas necesarias para contruir nuestra API
 from typing import Optional
-from fastapi import FastAPI, HTTPException # FastAPI nos ayuda a crear la API, HTTPException maneja errores.
+from fastapi import FastAPI, HTTPException, Request # FastAPI nos ayuda a crear la API, HTTPException maneja errores.
 from fastapi.responses import HTMLResponse, JSONResponse # HTMLResponse para páginas web, JSONResponse para respuestas en formato JSON. 
 import pandas as pd # Pandas nos ayuda a manejar datos en tablasm como si fuera un Excel.
 import nltk # NLTK es una librería para procesar texto y analizar palabras. 
 from nltk.tokenize import word_tokenize # Se usa para dividir un texto en palabras individuales.
 from nltk.corpus import wordnet
 
+#--------------------------------conexion html con el chatbot-----------------------------------------------
+from pydantic import BaseModel #Se usa para definir la estructura de los datos que el cliente (el frontend) enviará a la API.
+from fastapi.middleware.cors import CORSMiddleware
+#-----------------------------------------------------------------------------------------------------------
 from prediction import predecir_diabetes # Nos ayuda a encontrar sinonimos de palabras. 
+import conexionAutHtml # Importamos el archivo `conexionAutHtml.py` nos permite abrir de manera automatica la pagina web con el comando python main.py
 
+#iniciamos el servidor del archivo `conexionAutHtml.py`
+if __name__ == "__main__":
+    conexionAutHtml.start_server()
+    
 #import nltk
 #print(nltk.__file__)
 
@@ -59,6 +68,16 @@ def get_synonyms(word):
 # Esto inicializa la API con un nombre y una versión
 app = FastAPI(title="Mi aplicación de predición de diabetes", version="1.0.0")
 
+#--------------------------------conexion html con el chatbot-----------------------------------------------
+#permitimos peticiones desde la pagina web
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], #["http://localhost:5000"], aqui se puede poner la url de la web
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+#-----------------------------------------------------------------------------------------------------------
    
 # Ruta de inicio: Cuando alguien entra a la API sin especificar nada, verá un mensaje de bienvenida.
 
@@ -154,3 +173,44 @@ def predict_diabetes(gender: str, age: int, hypertension: int, heart_disease: in
     prediction = predecir_diabetes(gender, age, hypertension, heart_disease, smoking_history, peso, altura, HbA1c_input, glucose_input)
     return prediction
 
+#----------------------------------conexión con el chatbot-------------------------------------------
+#Creamos la ruta para el chatbot
+#Indica que esta función responderá a las solicitudes POST en la ruta /formulario
+@app.post("/formulario")
+
+#async: Permite manejar peticiones de forma asíncrona para mejorar el rendimiento.
+#user_message: UserMessage: FastAPI espera que el cuerpo de la solicitud tenga un JSON con los datos definidos en ChatRequest.
+async def recibir_respuestas(request: Request):
+    datos = await request.json()
+        
+    respuestas = datos.get("respuestas",[])  #  Extrae la lista de respuestas
+    print("Respuestas recibidas:", respuestas)  # Debugging
+    
+    # Validación de los datos
+    try:
+        # Extrae valores en el orden correcto
+        # # Extraer el nombre del usuario (Suponiendo que es la primera respuesta)
+        user_name = respuestas[0] if respuestas and isinstance(respuestas[0], str) else "Usuario" # Nombre
+        gender = respuestas[1]  # Género (Male / Female)
+        age = int(respuestas[2])  # Edad
+        hypertension = int(respuestas[3])  # Hipertensión (0 o 1)
+        heart_disease = int(respuestas[4])  # Enfermedad cardiovascular (0 o 1)
+        smoking_history = respuestas[5]  # Historial de fumar
+        peso = float(respuestas[6])  # Peso en kg
+        altura = float(respuestas[7]) / 100  # Altura en metros (convierte cm a m)
+        
+        # Algunos valores pueden ser vacíos, validar antes de convertir
+        hbA1c_input = float(respuestas[8]) if respuestas[8] else None
+        glucose_input = float(respuestas[9]) if respuestas[9] else None
+
+        # Llamado a la función de predicción
+        prediction = predecir_diabetes(gender, age, hypertension, heart_disease, smoking_history, peso, altura, hbA1c_input, glucose_input)
+
+        # Mensaje personalizado
+        mensaje = f"Gracias por responder, hemos registrado tus respuestas.<br><br> 🔹{user_name}, tu {prediction}  \n"
+        
+        #Devuelve una respuesta en formato JSON.
+        return {"reply": mensaje} 
+    except Exception as e:
+        print("Error en el servidor:", str(e))  #  Esto imprimirá el error en la terminal
+        return {"error": "Ocurrió un error al procesar los datos."}

@@ -82,7 +82,7 @@ async def recibir_respuestas(request: Request):
         prediction = predecir_diabetes(gender, age, hypertension, heart_disease, smoking_history, peso, altura, hbA1c_input, glucose_input)
 
         # Mensaje personalizado
-        mensaje = f"Gracias por responder, hemos registrado tus respuestas.<br><br> 🔹{user_name}, tu porcentaje de riesgo de diabetes es del {prediction} %"
+        mensaje = f"Gracias por responder, hemos registrado tus respuestas.<br><br> 🔹{user_name}, tu {prediction}  \n"
         
         #Devuelve una respuesta en formato JSON.
         return {"reply": mensaje} 

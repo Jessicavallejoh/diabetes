@@ -75,7 +75,7 @@ def predecir_diabetes(gender, age, hypertension, heart_disease, smoking, peso, a
     else:
         print("No tienes un alto riesgo de tener diabetes.")
         
-    puntaje = f"Probabilidad estimada: {probabilidad * 100}% \n{report}" 
+    puntaje = f"probabilidad estimada de estar en riesgo de sufrir diabetes es del: {probabilidad * 100}% .\n\n{report}" 
         
    # return puntaje, report 
    

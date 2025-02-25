@@ -16,14 +16,16 @@ import threading
 
 # Configuración del puerto y la direccion del host
 PORT_HTML = 5500  # Puedes cambiarlo según necesites
-PORT_UVICORN = 5000
+PORT_UVICORN = 9000
+# Configura el puerto del Live Server (por defecto es 5500)
+LIVE_SERVER_PORT = 5500
 #HOST = "127.0.0.1"
 
 # Función para abrir el navegador automáticamente
 def open_browser():
-    """Espera y abre la página en el navegador."""
+    """Espera y abre la página en el navegador Live Server."""
     time.sleep(20) # Espera 20 segundos para dar tiempo a que el servidor inicie
-    url = f"http://127.0.1.1:{PORT_HTML}/src/html/index.html" # Ruta del archivo HTML
+    url = f"http://127.0.1.1:{LIVE_SERVER_PORT}/src/html/index.html" # Ruta del archivo HTML
     webbrowser.open(url)
 
 # Funcion para iniciar el servidor
@@ -37,3 +39,5 @@ def start_server():
     # Ejecuta el servidor Uvicorn con las opciones dadas
     subprocess.run(["uvicorn", "main_copy:app", "--reload", "--log-level", "debug", "--host", "127.0.0.1", "--port", str(PORT_UVICORN)])
     
+if __name__ == "__main__":
+    start_server()

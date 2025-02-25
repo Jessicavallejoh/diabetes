@@ -8,6 +8,8 @@ los datos del formulario del chatbot:
         4. mostrarRespuestaFinal(): se ejecuta cuando la persona termina de responder y muestra un resumen de las respuestas
         5. guardarRespuesta(): se ejecuta cuando la persona responde a la pregunta
         6. enviarRespuestas(): se ejecuta cuando la persona termina de responder todas las preguntas
+        7. reiniciarEncuesta(): se ejecuta cuando la persona desea volver a realizar la encuesta
+        8. despedida(): se ejecuta cuando la persona termina de responder todas las preguntas
         7. mostrarMensajeBienvenida(): se ejecuta cuando se carga la página para mostrar el mensaje de bienvenida*/
 
 //Se definen las preguntas del chatbot
@@ -37,8 +39,8 @@ const preguntasChatbot = [
     }, 
     { pregunta: "Ingresa tu peso en Kilogramos (ejemplo: 75)", tipo: "numero" },
     { pregunta: "Ingresa tu altura en centimetros (ejemplo: 175)", tipo: "numero" },
-    { pregunta: "Nivel de HbA1c (dejar en blanco si no sabe)", tipo: "texto" },
-    { pregunta: "Nivel de glucosa en sangre (dejar en blanco si no sabe)", tipo: "texto" },
+    { pregunta: "Nivel de HbA1c (dejar en blanco si no sabe)", tipo: "numero" },
+    { pregunta: "Nivel de glucosa en sangre (dejar en blanco si no sabe)", tipo: "numero" },
     
 ];
 
@@ -65,8 +67,8 @@ function mostrarPregunta() {
     div.className = "bot-message";
     div.innerHTML = `<strong>🤖 Chatbot:</strong> ${preguntaObj.pregunta}`;
     chatBox.appendChild(div);
-
     scrollToBottom();// Asegurar que el scroll baje al último mensaje
+    chatBox.scrollTop = chatBox.scrollHeight; // Desplazar el scroll al final
 
     let input = document.getElementById("user-input");
     input.value = ""; // Limpiar input
@@ -74,9 +76,11 @@ function mostrarPregunta() {
     let botonEnviar = document.querySelector(".input-container button");
     botonEnviar.onclick = () => guardarRespuesta(); // Asignar evento
 
+    //Si la pregunta es de opcion
     if (preguntaObj.tipo === "opcion") {
-        // Si la pregunta es de opción, ocultamos el input y mostramos botones
-        //document.querySelector(".input-container").style.display = "none";
+        // Hacer el input solo lectura y deshabilitar el botón de enviar
+        input.readOnly = true;
+        botonEnviar.disabled = true;
 
         let opcionesDiv = document.createElement("div");
         opcionesDiv.className = "options-container";
@@ -91,8 +95,18 @@ function mostrarPregunta() {
             opcionesDiv.appendChild(boton);
         }
         chatBox.appendChild(opcionesDiv);
-    }
+        scrollToBottom();// Asegurar que el scroll baje al último mensaje
+        chatBox.scrollTop = chatBox.scrollHeight; // Desplazar el scroll al final
+    }else{
+        // Habilitar el input de texto y el botón de enviar
+        input.readOnly = false;
+        botonEnviar.disabled = false;
+        input.focus();
 
+        scrollToBottom();// Asegurar que el scroll baje al último mensaje
+        chatBox.scrollTop = chatBox.scrollHeight; // Desplazar el scroll al final
+    }
+    scrollToBottom();// Asegurar que el scroll baje al último mensaje
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
@@ -109,8 +123,36 @@ function mostrarRespuestaFinal(mensaje) {
     });
 
     //Trae la respuesta de la funcion recibir_respuestas del backend y las muestra al usuario
-    div.innerHTML = resumen + `<br> ${mensaje.replace(/\n/g, "<br>")}`;
+    div.innerHTML = resumen + `<br> ${mensaje.replace(/\n/g, "<br>")
+        .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")//convertir en negrita
+        .replace(/^\* (.+)$/gm, '<ul>\n<li>$1</li>\n</ul>')// Convertir líneas que comienzan con "* " en listas desordenadas `<ul>
+        .replace(/^\+ (.+)$/gm, '<ul>\n  <li>$1</li>\n</ul>')// Convertir líneas que comienzan con "+ " en listas anidadas `<ul>` dentro de `<li>`
+        .replace(/<\/ul>\n<ul>/g, '')}`; // Unir listas consecutivas correctamente
     chatBox.appendChild(div);
+
+    // Pregunta si desea repetir la encuesta
+    let preguntaDiv = document.createElement("div");
+    preguntaDiv.className = "bot-message";
+    preguntaDiv.innerHTML = "<strong>🔄 ¿Te gustaría volver a realizar la encuesta?</strong>";
+    chatBox.appendChild(preguntaDiv);
+
+    // Contenedor para los botones de opción
+    let opcionesDiv = document.createElement("div");
+    opcionesDiv.className = "options-container";
+
+    let botonSi = document.createElement("button");
+    botonSi.innerText = "Sí, repetir";
+    botonSi.onclick = () => reiniciarEncuesta();
+
+    let botonNo = document.createElement("button");
+    botonNo.innerText = "No, gracias";
+    botonNo.onclick = () => despedida();
+
+    opcionesDiv.appendChild(botonSi);
+    opcionesDiv.appendChild(botonNo);
+    chatBox.appendChild(opcionesDiv);
+
+    chatBox.scrollTop = chatBox.scrollHeight; // Desplazar el scroll al final
 
     scrollToBottom();// Asegurar que el scroll baje al último mensaje
 
@@ -141,14 +183,19 @@ function guardarRespuesta(respuesta = null, textoRespuesta = null) {
     //Verificamos el tipo de pregunta si es tipo numero o texto
     if (preguntaObj.tipo === "numero") {
         let input = document.getElementById("user-input");
-        let numero = parseFloat(input.value.trim()); //convertimos el texto a numero
+        //let numero = parseFloat(input.value.trim()); //convertimos el texto a numero
+        let valorIngresado = input.value.trim(); // Obtenemos el valor ingresado como cadena
+
 
         //Verificamos si la persona no ingresa un numero y es una pregunta de glucosa o HbA1c ya que no son obligatorias
-        if (numero === "" && (preguntaObj.pregunta.includes("HbA1c") || preguntaObj.pregunta.includes("glucosa"))) {
-            respuesta = "";
+        if (valorIngresado === "" && ( preguntaObj.pregunta.includes("HbA1c") || preguntaObj.pregunta.includes("glucosa"))) {
+            respuesta = null; // Usamos null en lugar de una cadena vacía
             textoRespuesta = "(No proporcionado)";
-        } else { //Si la persona no ingresa un numero y no es una pregunta de glucosa o HbA1c
-            numero = parseFloat(numero); //convertimos el texto a numero
+        } else if (valorIngresado === "") {
+            alert("Por favor ingresa un número.");
+            return;
+        }else { //Si la persona no ingresa un numero y no es una pregunta de glucosa o HbA1c
+            let numero = parseFloat(valorIngresado); //convertimos el texto a numero
             if (isNaN(numero)) {
                 alert("Por favor ingresa un número válido.");
                 return;
@@ -161,8 +208,10 @@ function guardarRespuesta(respuesta = null, textoRespuesta = null) {
         respuesta = input.value.trim(); //obtenemos el texto ingresado
         //Verificamos si la persona no ingresa un texto y es una pregunta de glucosa o HbA1c ya que no son obligatorias
         if (respuesta === "" && (preguntaObj.pregunta.includes("HbA1c") || preguntaObj.pregunta.includes("glucosa"))) {
+            respuesta = null; // Usamos null en lugar de una cadena vacía
             textoRespuesta = "(No proporcionado)";
         } else if (respuesta === "") {
+            alert("Por favor ingresa una respuesta válida.");
             return;
         } else {
             textoRespuesta = respuesta;
@@ -187,12 +236,35 @@ function guardarRespuesta(respuesta = null, textoRespuesta = null) {
 
     scrollToBottom();// Asegurar que el scroll baje al último mensaje
 
+    chatBox.scrollTop = chatBox.scrollHeight;
+
     preguntaActual++; // Incrementar el contador de preguntas
 
     //verificamos si la pregunta actual es menor a la cantidad de preguntas
     if (preguntaActual < preguntasChatbot.length) {
         setTimeout(mostrarPregunta, 500);
     } else { //si la pregunta actual es igual a la cantidad de preguntas se envian los datos al servidor
+        // Deshabilitar el input y el botón
+        document.getElementById("user-input").style.display="true";
+        document.querySelector(".input-container button").style.display="true";
+
+        const chatBox = document.getElementById("chat-box");
+        let div = document.createElement("div");
+        div.className = "bot-message";
+        div.innerHTML = `<strong>🤖 Chatbot:</strong> 🔍 <b>Analizando tu información...</b><br>
+                        Nuestro sistema está procesando tus respuestas para estimar tu riesgo de diabetes. 
+                        Esto tomará solo unos segundos.<br><br>
+
+                        <b>⏳ Por favor, espera un momento...</b><br>
+                        Pronto recibirás tu resultado junto con recomendaciones personalizadas para cuidar tu salud.
+                        ¡Gracias por tu paciencia! 😊`;
+        
+        chatBox.appendChild(div);
+
+        scrollToBottom();// Asegurar que el scroll baje al último mensaje
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+
         enviarDatosAlServidor();
     }
 }
@@ -222,6 +294,40 @@ function mostrarMensajeBienvenida() {
     `;
 
     chatBox.innerHTML = bienvenida; // Agrega el mensaje en el chat
+    scrollToBottom();// Asegurar que el scroll baje al último mensaje
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// Función para reiniciar la encuesta
+function reiniciarEncuesta() {
+    let input = document.getElementById("user-input");
+    let botonEnviar = document.querySelector(".input-container button");
+
+    preguntaActual = 0; //Contedor de preguntas actual en 0
+    respuestas = []; //Lista de respuestas vacia
+    
+    const chatBox = document.getElementById("chat-box");
+    chatBox.innerHTML = ""; // Limpiar el chat
+
+    // Habilitar el input de texto y el botón de enviar
+    input.readOnly = false;
+    botonEnviar.disabled = false;
+    input.focus();
+
+    mostrarMensajeBienvenida(); // Volver a empezar la encuesta
+    iniciarChat();
+}
+
+// Función para mostrar mensaje de despedida
+function despedida() {
+    const chatBox = document.getElementById("chat-box");
+    let div = document.createElement("div");
+    div.className = "bot-message";
+    div.innerHTML = "<strong>🤖 Chatbot:</strong> ¡Gracias por participar! Cuida tu salud y vuelve cuando necesites. 💙";
+    chatBox.appendChild(div);
+    scrollToBottom();// Asegurar que el scroll baje al último mensaje
+    chatBox.scrollTop = chatBox.scrollHeight; // Desplazar el scroll al final
 }
 
 // Ejecutar la función al cargar la página
