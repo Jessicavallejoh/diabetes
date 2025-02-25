@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filtro de Diabetes</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Filtro de Datos de Diabetes</h1>
+    
+    <form method="get" action="/filter">
+        <label for="column">Columna:</label>
+        <select name="column" id="column" required>
+            <option value="">Seleccione una columna</option>
+            <option value="age">Edad</option>
+            <option value="hypertension">Hipertensión</option>
+            <option value="heart_disease">Enfermedad cardíaca</option>
+            <option value="smoking_history">Historia de fumador</option>
+            <option value="bmi">BMI</option>
+            <option value="HbA1c_level">Nivel HbA1c</option>
+            <option value="blood_glucose_level">Nivel de glucosa</option>
+            <option value="diabetes">Diabetes</option>
+        </select>
+
+        <label for="value">Valor:</label>
+        <input type="text" name="value" id="value" required>
+
+        <label for="per_page">Resultados por página:</label>
+        <select name="per_page" id="per_page">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+        </select>
+
+        <button type="submit">Filtrar</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red">{{ error }}</p>
+    {% endif %}
+
+    {% if results %}
+        <h2>Resultados ({{ total }} encontrados)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Edad</th>
+                    <th>Hipertensión</th>
+                    <th>Enf. Cardíaca</th>
+                    <th>Hist. Fumador</th>
+                    <th>BMI</th>
+                    <th>HbA1c</th>
+                    <th>Glucosa</th>
+                    <th>Diabetes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        <td>{{ result.age }}</td>
+                        <td>{{ result.hypertension }}</td>
+                        <td>{{ result.heart_disease }}</td>
+                        <td>{{ result.smoking_history }}</td>
+                        <td>{{ result.bmi }}</td>
+                        <td>{{ result.HbA1c_level }}</td>
+                        <td>{{ result.blood_glucose_level }}</td>
+                        <td>{{ result.diabetes }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="/filter?column={{ column }}&value={{ value }}&page={{ page-1 }}&per_page={{ per_page }}">Anterior</a>
+            {% endif %}
+            
+            <span>Página {{ page }} de {{ (total + per_page - 1) // per_page }}</span>
+            
+            {% if page * per_page < total %}
+                <a href="/filter?column={{ column }}&value={{ value }}&page={{ page+1 }}&per_page={{ per_page }}">Siguiente</a>
+            {% endif %}
+        </div>
+    {% endif %}
+</body>
+</html>
