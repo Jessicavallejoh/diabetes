@@ -1,6 +1,6 @@
-# Ignorar archivos CSV dentro de la carpeta dataset
-Dataset/prediccion_diabetes_copy.csv
-Dataset/prediccion_diabetes.csv
+#Ignorar archivos CSV dentro de la carpeta dataset
+#Dataset/prediccion_diabetes_copy.csv
+#Dataset/prediccion_diabetes.csv
 
 # Ignorar carpeta venv (para entornos virtuales)
 venv/
