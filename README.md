@@ -23,6 +23,9 @@ Yenifer Barco Castrillón
      - **2.3.** Ejecutar desde el boton de Visual Studio:
           Esto es posibles ya que en el proyecto se encuentra un archivo donde se especifican los puertos y rutas a abrir al ejecutar el proyecto.<br><br>
 
+> [!NOTE]
+> La opcion de live server aparce cuando instalas en visualStudio la extensiones, se llama live server el primero que aparece en la lista de la seccion de extensiones.
+
 ## Estructura del proyecto.<br>
 El proyecto tiene la siguiente estructura:<br>
 
@@ -41,7 +44,7 @@ El proyecto tiene la siguiente estructura:<br>
     -  ||---> **css**: Contiene los archivos con los estilos .css de la pagina web.<br>
     -	||---> **fonts**: Contiene el archivo con el tipo de letra utilizada en el proyecto, en este caso Monserrat.<br>
     -	||---> **html**: Contiene los archivos .html que da la estructura de la pagina web.<br>
-    -	||---> **img**: Contiene todas las imagenes utilizadasen la página web html.<br>
+    -	||---> **img**: Contiene todas las imagenes utilizadas en la página web html.<br>
     -	||---> **js**: Contiene los archivos de javascript necesarios para conectar el HTML con el cahtboot.<br>
     -	||---> **json**: Contiene los archivos .json <br>
 
