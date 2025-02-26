@@ -25,7 +25,7 @@ LIVE_SERVER_PORT = 5500
 def open_browser():
     """Espera y abre la página en el navegador Live Server."""
     time.sleep(20) # Espera 20 segundos para dar tiempo a que el servidor inicie
-    url = f"http://127.0.1.1:{LIVE_SERVER_PORT}/src/html/index.html" # Ruta del archivo HTML
+    url = f"http://127.0.0.1:{LIVE_SERVER_PORT}/src/html/index.html" # Ruta del archivo HTML
     webbrowser.open(url)
 
 # Funcion para iniciar el servidor

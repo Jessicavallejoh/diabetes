@@ -25,7 +25,7 @@
     console.log("Enviando mensaje:", userName +"|"+ message +"|"+ userGender+"|"+ userAge+"|"+ userHypertension+"|"+ userHeartDisease+"|"+ userSmokingHistory+"|"+ userPeso+"|"+ userAltura+"|"+ userHbA1c+"|"+ userGlucose); // Depuración:imprime en la consola del navegador lo que el usuario ingresó
 
     //Enviamos el mensaje al backend o servidor FASTAPI con fetch
-    let response = await fetch("http://127.0.0.1:5000/chatbot", { //Envía una solicitud POST a la URL http://127.0.0.1:8000/chatbot, donde está la API de FastAPI.
+    let response = await fetch("http://127.0.0.1:9000/chatbot", { //Envía una solicitud POST a la URL http://127.0.0.1:8000/chatbot, donde está la API de FastAPI.
         method: "POST", //Indica que estamos enviando datos al servidor (FastAPI).
         headers: { //Especifica que los datos se enviarán en formato JSON.
             "Content-Type": "application/json"
