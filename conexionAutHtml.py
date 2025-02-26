@@ -37,7 +37,7 @@ def start_server():
     #uvicorn.run(app, host="127.0.0.1", port=port, reload=True)
     
     # Ejecuta el servidor Uvicorn con las opciones dadas
-    subprocess.run(["uvicorn", "main_copy:app", "--reload", "--log-level", "debug", "--host", "127.0.0.1", "--port", str(PORT_UVICORN)])
+    subprocess.run(["uvicorn", "main:app", "--reload", "--log-level", "debug", "--host", "127.0.0.1", "--port", str(PORT_UVICORN)])
     
 if __name__ == "__main__":
     start_server()
